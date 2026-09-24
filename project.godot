@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Squid Game"
-run/main_scene="uid://dhrk1xe8gdcw0"
+run/main_scene="uid://b4b2yvgan8xuw"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://17jwt3g7ubmy"]
+
+[ext_resource type="Script" uid="uid://db5xr4embiuf4" path="res://scenes/mob.gd" id="1_ebxvl"]
+[ext_resource type="Texture2D" uid="uid://dbutrgh0ex84e" path="res://assets/art/enemyFlyingAlt_1.png" id="1_h8ps3"]
+[ext_resource type="Texture2D" uid="uid://dhmxh4kwhg8vm" path="res://assets/art/enemyFlyingAlt_2.png" id="2_ebxvl"]
+[ext_resource type="Texture2D" uid="uid://cd2fko3w6sbty" path="res://assets/art/enemySwimming_1.png" id="3_wpivu"]
+[ext_resource type="Texture2D" uid="uid://b4xn0xt85ux2v" path="res://assets/art/enemySwimming_2.png" id="4_nao87"]
+[ext_resource type="Texture2D" uid="uid://b73cu0u84ecd0" path="res://assets/art/enemyWalking_1.png" id="5_i71wu"]
+[ext_resource type="Texture2D" uid="uid://bjy8hxje0qv4c" path="res://assets/art/enemyWalking_2.png" id="6_m0xve"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlwmu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h8ps3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ebxvl")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wpivu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nao87")
+}],
+"loop": 1,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_i71wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m0xve")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m0elm"]
+radius = 36.05551
+
+[node name="Mob" type="RigidBody2D" unique_id=69423556]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ebxvl")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=920796960]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_rlwmu")
+animation = &"walk"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=641000283]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1800741008]
+shape = SubResource("CircleShape2D_m0elm")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
