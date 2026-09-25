@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
+var tween: Tween
 
 func show_message(text):
 	$Message.text = text
@@ -32,3 +33,18 @@ func _on_start_button_pressed():
 
 func _on_message_timer_timeout():
 	$Message.hide()
+
+func _on_start_button_mouse_entered() -> void:
+	reset_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($StartButton, "scale", Vector2(1.1, 1.1), 0.4)
+
+func _on_start_button_mouse_exited() -> void:
+	reset_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($StartButton, "scale", Vector2.ONE, 0.4)
+
+func reset_tween() -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween()
